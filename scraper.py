@@ -110,6 +110,18 @@ def main():
     seen = load_seen()
     failed = []
 
+    if os.environ.get("TEST_MESSAGE") == "true":
+        # 연결 확인용: 각 게시판의 최신 글 하나를 테스트로 보냄 (기록은 바꾸지 않음)
+        if not webhook:
+            raise SystemExit("DISCORD_WEBHOOK_URL Secret이 등록되지 않았어요.")
+        for board in BOARDS:
+            posts = fetch_posts(board)
+            if posts:
+                p = dict(posts[0], title="[연결 테스트] " + posts[0]["title"])
+                send_discord(webhook, board, p)
+                print(f"[{board['name']}] 테스트 메시지 전송 완료")
+        return
+
     for board in BOARDS:
         name = board["name"]
         try:

@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "7 * * * *"   # 매시간 7분 (UTC 기준, 한국 시간도 매시간)
   workflow_dispatch:       # Actions 탭에서 수동 실행 버튼
+    inputs:
+      test:
+        description: "디스코드 연결 테스트 메시지 보내기"
+        type: boolean
+        default: false
 
 permissions:
   contents: write          # seen.json 저장용
@@ -23,6 +28,7 @@ jobs:
       - name: 새 공지 확인
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          TEST_MESSAGE: ${{ inputs.test }}
         run: python scraper.py
 
       - name: 확인한 글 목록 저장
