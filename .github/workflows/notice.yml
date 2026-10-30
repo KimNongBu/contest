@@ -2,7 +2,7 @@ name: 공지사항 알림
 
 on:
   schedule:
-    - cron: "41 * * * *"  # 매시간 41분 (UTC 기준이지만 매시간이라 한국 시간도 같음)
+    - cron: "32 * * * *"  # 매시간 41분 (UTC 기준이지만 매시간이라 한국 시간도 같음)
   workflow_dispatch:       # Actions 탭에서 수동 실행 버튼
     inputs:
       test:
