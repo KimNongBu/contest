@@ -26,6 +26,13 @@ BOARDS = [
         "keywords": [],  # 비우면 모든 새 글 알림
         "color": 0x1E5AA8,
     },
+    {
+        "name": "사회복지학 공지",
+        "url": "https://ssw.ulsan.ac.kr/ssw/1877",
+        "post_pattern": r"action=view.*?[?&]no=(\d+)|[?&]no=(\d+).*?action=view",
+        "keywords": [],
+        "color": 0xE67E22,
+    },
     # 게시판을 더 추가하려면 위 블록을 복사해서 붙여넣으세요.
 ]
 SEEN_FILE = Path(__file__).parent / "seen.json"
